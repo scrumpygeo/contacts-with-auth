@@ -13,7 +13,6 @@ class ContactCreate extends Component {
         <label>{label}</label>
         <input {...input} className='form-control' autoComplete='off' />
         {this.renderError(meta)}
-        {/* <div className='alert alert-danger'>{meta.error}</div> */}
       </div>
     );
   };
