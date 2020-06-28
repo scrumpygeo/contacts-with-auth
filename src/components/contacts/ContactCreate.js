@@ -4,14 +4,17 @@ import { Field, reduxForm } from 'redux-form';
 class ContactCreate extends Component {
   renderError({ error, touched }) {
     if (touched && error) {
-      return <div className='alert alert-danger'>{error}</div>;
+      return <div className='text-danger'>{error}</div>;
     }
   }
   renderInput = ({ input, label, meta }) => {
+    const className = `form-control ${
+      meta.error && meta.touched ? 'is-invalid' : ''
+    }`;
     return (
       <div className='form-group'>
         <label>{label}</label>
-        <input {...input} className='form-control' autoComplete='off' />
+        <input {...input} className={className} autoComplete='off' />
         {this.renderError(meta)}
       </div>
     );
