@@ -13,7 +13,7 @@ const AppNavbar = () => {
         id='navbarNavAltMarkup'
       >
         <div className='navbar-nav '>
-          <Link to='/' className='nav-item nav-link active' href='#'>
+          <Link to='/' className='nav-item nav-link' href='#'>
             TBD <span className='sr-only'>(current)</span>
           </Link>
           <Link to='/' className='nav-item nav-link' href='#'>
