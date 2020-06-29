@@ -1,4 +1,5 @@
 import contacts from '../apis/contacts';
+import history from '../history';
 import {
   CREATE_CONTACT,
   FETCH_CONTACTS,
@@ -11,6 +12,7 @@ export const createContact = (formValues) => async (dispatch) => {
   const response = await contacts.post('/contacts', formValues);
 
   dispatch({ type: CREATE_CONTACT, payload: response.data });
+  history.push('/');
 };
 
 export const fetchContacts = () => async (dispatch) => {
