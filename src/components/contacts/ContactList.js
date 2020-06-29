@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchContacts } from '../../actions';
 
@@ -37,8 +38,26 @@ export class ContactList extends Component {
     });
   }
 
+  renderCreateBtn() {
+    return (
+      <div style={{ textAlign: 'right' }}>
+        <Link to='/contacts/new' className='btn btn-success'>
+          Add a Contact
+        </Link>
+      </div>
+    );
+  }
+
   render() {
-    return <div className='row'>{this.renderList()}</div>;
+    return (
+      <Fragment>
+        <div className='my-2'>
+          <h2 className='d-inline'>Contacts</h2>{' '}
+          <span className='float-right '> {this.renderCreateBtn()}</span>
+        </div>
+        <div className='row'>{this.renderList()}</div>
+      </Fragment>
+    );
   }
 }
 
