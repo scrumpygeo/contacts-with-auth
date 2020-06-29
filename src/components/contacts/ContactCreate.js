@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { createContact } from '../../actions';
+
+const email = (value) =>
+  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
+    ? 'Invalid email address'
+    : undefined;
 
 class ContactCreate extends Component {
   renderError({ error, touched }) {
@@ -20,9 +27,9 @@ class ContactCreate extends Component {
     );
   };
 
-  onSubmit(formValues) {
-    console.log(formValues);
-  }
+  onSubmit = (formValues) => {
+    this.props.createContact(formValues);
+  };
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -36,7 +43,12 @@ class ContactCreate extends Component {
           component={this.renderInput}
           label='Last Name'
         />
-        <Field name='email' component={this.renderInput} label='Email' />
+        <Field
+          name='email'
+          component={this.renderInput}
+          label='Email'
+          validate={email}
+        />
         <button className='btn btn-primary'>Submit</button>
       </form>
     );
@@ -61,7 +73,9 @@ const validate = (formValues) => {
   return errors;
 };
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form: 'contactCreate',
   validate,
 })(ContactCreate);
+
+export default connect(null, { createContact })(formWrapped);
