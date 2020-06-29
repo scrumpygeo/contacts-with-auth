@@ -1,16 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import ContactCreate from '../components/contacts/ContactCreate';
 import ContactList from '../components/contacts/ContactList';
 import ContactShow from '../components/contacts/ContactShow';
 import ContactEdit from '../components/contacts/ContactEdit';
 import ContactDelete from '../components/contacts/ContactDelete';
 import AppNavbar from '../components/Layout/AppNavbar';
+import history from '../history';
 
 const App = () => {
   return (
     <div className='container'>
-      <BrowserRouter>
+      <Router history={history}>
         <div>
           <AppNavbar />
           <Route path='/' exact component={ContactList} />
@@ -19,7 +20,7 @@ const App = () => {
           <Route path='/contacts/delete' exact component={ContactDelete} />
           <Route path='/contacts/show' exact component={ContactShow} />
         </div>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };

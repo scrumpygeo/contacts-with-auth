@@ -41,7 +41,7 @@ export class ContactList extends Component {
   renderCreateBtn() {
     return (
       <div style={{ textAlign: 'right' }}>
-        <Link to='/contacts/new' className='btn btn-success'>
+        <Link to='/contacts/new' className='btn btn-success mt-1'>
           Add a Contact
         </Link>
       </div>
