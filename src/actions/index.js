@@ -30,6 +30,7 @@ export const editContact = (id, formValues) => async (dispatch) => {
   const response = await contacts.put(`/contacts/${id}`, formValues);
 
   dispatch({ type: EDIT_CONTACT, payload: response.data });
+  history.push('/');
 };
 
 export const deleteContact = (id) => async (dispatch) => {

@@ -10,7 +10,7 @@ class ContactCreate extends Component {
   render() {
     return (
       <div>
-        <h3>Create a Contact</h3>
+        <h3 className='text-center mt-2'>Create a Contact</h3>
         <ContactForm onSubmit={this.onSubmit} />
       </div>
     );
