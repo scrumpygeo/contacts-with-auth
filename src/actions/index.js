@@ -17,7 +17,6 @@ export const createContact = (formValues) => async (dispatch) => {
 
 export const fetchContacts = () => async (dispatch) => {
   const response = await contacts.get('/contacts');
-
   dispatch({ type: FETCH_CONTACTS, payload: response.data });
 };
 

@@ -11,7 +11,12 @@ export class ContactList extends Component {
   renderAdmin = (contact) => {
     return (
       <div className='float-right'>
-        <button className='btn btn-primary mr-2'>Edit</button>
+        <Link
+          to={`/contacts/edit/${contact.id}`}
+          className='btn btn-primary mr-2'
+        >
+          Edit
+        </Link>
         <button className='btn btn-danger'>Delete</button>
       </div>
     );
