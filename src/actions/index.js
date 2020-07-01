@@ -27,7 +27,7 @@ export const fetchContact = (id) => async (dispatch) => {
 };
 
 export const editContact = (id, formValues) => async (dispatch) => {
-  const response = await contacts.put(`/contacts/${id}`, formValues);
+  const response = await contacts.patch(`/contacts/${id}`, formValues);
 
   dispatch({ type: EDIT_CONTACT, payload: response.data });
   history.push('/');
@@ -37,4 +37,5 @@ export const deleteContact = (id) => async (dispatch) => {
   await contacts.delete(`/contacts/${id}`);
 
   dispatch({ type: DELETE_CONTACT, payload: id });
+  history.push('/');
 };

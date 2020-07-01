@@ -17,7 +17,9 @@ export class ContactList extends Component {
         >
           Edit
         </Link>
-        <button className='btn btn-danger'>Delete</button>
+        <Link to={`/contacts/delete/${contact.id}`} className='btn btn-danger'>
+          Delete
+        </Link>
       </div>
     );
   };

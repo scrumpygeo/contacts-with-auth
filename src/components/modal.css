@@ -1,0 +1,11 @@
+.modal-f {
+  z-index: 10 !important;
+  opacity: 1 !important;
+}
+
+.modal-backdrop {
+  opacity: 0.5;
+  z-index: -1;
+  height: 100vh;
+  width: 100vw;
+}
