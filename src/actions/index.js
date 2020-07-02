@@ -6,11 +6,13 @@ import {
   FETCH_CONTACT,
   DELETE_CONTACT,
   EDIT_CONTACT,
+  REGISTER_USER,
 } from "./types";
 
 export const createContact = (formValues) => async (dispatch) => {
   const response = await contacts.post("/contacts", formValues);
 
+  console.log("create:", response);
   dispatch({ type: CREATE_CONTACT, payload: response.data.data });
   history.push("/");
 };
