@@ -18,7 +18,7 @@ const App = () => {
           <Route path='/contacts/new' exact component={ContactCreate} />
           <Route path='/contacts/edit/:id' exact component={ContactEdit} />
           <Route path='/contacts/delete/:id' exact component={ContactDelete} />
-          <Route path='/contacts/show' exact component={ContactShow} />
+          <Route path='/contacts/show/:id' exact component={ContactShow} />
         </div>
       </Router>
     </div>

@@ -32,7 +32,9 @@ export class ContactList extends Component {
           <div className='card my-3' style={{ backgroundColor: '#e6f9ff' }}>
             <div className='card-body'>
               <h5 className='card-title'>
-                {contact.first_name} {contact.last_name}
+                <Link to={`/contacts/show/${contact.id}`}>
+                  {contact.first_name} {contact.last_name}
+                </Link>
               </h5>
               <div>
                 <p className='card-text float-left mt-2'>{contact.email}</p>
