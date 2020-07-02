@@ -5,7 +5,7 @@ import './modal.css';
 const Modal = (props) => {
   return ReactDOM.createPortal(
     <div
-      className='modal-fade'
+      className='modal-fade '
       id='staticBackdrop'
       data-backdrop='static'
       data-keyboard='false'
