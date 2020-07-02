@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import ContactCreate from '../components/contacts/ContactCreate';
 import ContactList from '../components/contacts/ContactList';
 import ContactShow from '../components/contacts/ContactShow';
@@ -14,11 +14,17 @@ const App = () => {
       <Router history={history}>
         <div>
           <AppNavbar />
-          <Route path='/' exact component={ContactList} />
-          <Route path='/contacts/new' exact component={ContactCreate} />
-          <Route path='/contacts/edit/:id' exact component={ContactEdit} />
-          <Route path='/contacts/delete/:id' exact component={ContactDelete} />
-          <Route path='/contacts/show/:id' exact component={ContactShow} />
+          <Switch>
+            <Route path='/' exact component={ContactList} />
+            <Route path='/contacts/new' exact component={ContactCreate} />
+            <Route path='/contacts/edit/:id' exact component={ContactEdit} />
+            <Route
+              path='/contacts/delete/:id'
+              exact
+              component={ContactDelete}
+            />
+            <Route path='/contacts/show/:id' exact component={ContactShow} />
+          </Switch>
         </div>
       </Router>
     </div>
