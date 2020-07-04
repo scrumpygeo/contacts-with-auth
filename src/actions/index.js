@@ -6,7 +6,6 @@ import {
   FETCH_CONTACT,
   DELETE_CONTACT,
   EDIT_CONTACT,
-  REGISTER_USER,
 } from "./types";
 
 export const createContact = (formValues) => async (dispatch) => {
