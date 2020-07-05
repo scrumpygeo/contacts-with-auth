@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-import contactReducer from "./contactReducer";
-import authReducer from "./authReducer";
-import alertReducer from "./alertReducer";
+import contacts from "./contacts";
+import auth from "./auth";
+import alert from "./alert";
 
 export default combineReducers({
   form: formReducer,
-  contacts: contactReducer,
-  auth: authReducer,
-  alert: alertReducer,
+  contacts,
+  auth,
+  alert,
 });

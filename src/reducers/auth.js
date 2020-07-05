@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
       localStorage.removeItem("token");
       return {
         ...state,
-        token: null,
+        token: null, // put token value in state to null(above just removed it from local storage)
         isAuthenticated: false,
         loading: false,
       };

@@ -1,12 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions/auth";
+import { login } from "../../actions/auth";
 
 export class Login extends Component {
   state = {
     email: "",
     password: "",
-    loginErrors: "",
   };
 
   headers = {
@@ -20,7 +19,9 @@ export class Login extends Component {
     };
 
     const body = { email: this.state.email, password: this.state.password };
-    this.props.loginUser(body, headers);
+    console.log("Body:", body);
+    console.log("Headers", headers);
+    this.props.login(body, headers);
   };
 
   handleChange = (e) => {
@@ -72,4 +73,4 @@ export class Login extends Component {
   }
 }
 
-export default connect(null, { loginUser })(Login);
+export default connect(null, { login })(Login);

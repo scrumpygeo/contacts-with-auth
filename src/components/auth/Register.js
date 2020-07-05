@@ -2,20 +2,25 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { register } from "../../actions/auth";
 import { setAlert } from "../../actions/alert";
+import PropTypes from "prop-types";
 
 export class Register extends Component {
   state = {
     email: "",
     password: "",
     password2: "",
-    registrationErrors: "",
   };
 
   onSubmit = async (e) => {
     e.preventDefault();
+
+    const errArray = [];
     if (this.state.password !== this.state.password2) {
-      this.props.setAlert("Passwords do not match", "danger");
+      errArray.push(this.props.setAlert("Passwords do not match", "danger"));
     } else {
+      const headers = {
+        "Content-Type": "application/json",
+      };
       const registerValues = {
         user: {
           email: this.state.email,
@@ -23,7 +28,8 @@ export class Register extends Component {
           password2: this.state.password2,
         },
       };
-      this.props.register(registerValues);
+
+      this.props.register(registerValues, headers);
     }
   };
 
@@ -85,5 +91,9 @@ export class Register extends Component {
     );
   }
 }
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+};
 
 export default connect(null, { register, setAlert })(Register);
