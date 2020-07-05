@@ -3,7 +3,7 @@
 import axios from "axios";
 
 const setAuthToken = (authentication_token, email) => {
-  if (token && email) {
+  if (authentication_token && email) {
     axios.defaults.headers.common["X-User-Token"] = authentication_token;
     axios.defaults.headers.common["X-User-Email"] = email;
   } else {
@@ -12,4 +12,6 @@ const setAuthToken = (authentication_token, email) => {
   }
 };
 
-export default setAuthToken;
+export default axios.create({
+  baseURL: "http://localhost:5000/v1",
+});

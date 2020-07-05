@@ -1,13 +1,30 @@
 import contacts from "../apis/contacts";
 import { setAlert } from "../actions/alert";
 import history from "../history";
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_USER } from "./types";
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  LOGIN_USER,
+  USER_LOADED,
+  AUTH_ERROR,
+} from "./types";
+import setAuthToken from "../utils/setAuthToken";
 
 // Load User - to check if logged in
 export const loadUser = () => async (dispatch) => {
+  if (localStorage.authentication_token && localStorage.email) {
+    setAuthToken(localStorage.authentication_token, localStorage.email);
+  }
   try {
+    const res = await setAuthToken.get("/sessions");
+    dispatch({
+      type: USER_LOADED,
+      payload: res.data,
+    });
   } catch (err) {
-    console.log(err.msg);
+    dispatch({
+      type: AUTH_ERROR,
+    });
   }
 };
 
