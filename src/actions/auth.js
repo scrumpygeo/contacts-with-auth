@@ -8,6 +8,7 @@ export const register = (registerValues, headers) => async (dispatch) => {
   try {
     const response = await contacts.post("/users", registerValues, headers);
 
+    // console.log("response: ", response.data.data.user.authentication_token);
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.data.user });
     history.push("/");
   } catch (err) {

@@ -10,7 +10,7 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      localStorage.setItem("token", action.payload.token); // put returned item in local storage
+      localStorage.setItem("token", action.payload.authentication_token); // put returned item in local storage
       return {
         ...state,
         ...action.payload,
