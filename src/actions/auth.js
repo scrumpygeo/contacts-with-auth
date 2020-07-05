@@ -1,6 +1,7 @@
 import contacts from "../apis/contacts";
 import { setAlert } from "../actions/alert";
 import history from "../history";
+import axios from "axios";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -16,7 +17,7 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.authentication_token, localStorage.email);
   }
   try {
-    const res = await setAuthToken.get("/sessions");
+    const res = await axios.get("http://localhost:5000/v1/sessions");
     dispatch({
       type: USER_LOADED,
       payload: res.data,

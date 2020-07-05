@@ -12,6 +12,4 @@ const setAuthToken = (authentication_token, email) => {
   }
 };
 
-export default axios.create({
-  baseURL: "http://localhost:5000/v1",
-});
+export default setAuthToken;
