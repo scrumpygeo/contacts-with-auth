@@ -3,12 +3,23 @@ import { setAlert } from "../actions/alert";
 import history from "../history";
 import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_USER } from "./types";
 
+// Load User - to check if logged in
+export const loadUser = () => async (dispatch) => {
+  try {
+  } catch (err) {
+    console.log(err.msg);
+  }
+};
+
 // Register
 export const register = (registerValues, headers) => async (dispatch) => {
   try {
+    const headers = {
+      "Content-Type": "application/json",
+    };
     const response = await contacts.post("/users", registerValues, headers);
 
-    // console.log("response: ", response.data.data.user.authentication_token);
+    // console.log("response: ", response.data.data.user); // auth_token, email, id
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.data.user });
     history.push("/");
   } catch (err) {

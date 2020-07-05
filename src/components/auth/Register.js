@@ -18,9 +18,6 @@ export class Register extends Component {
     if (this.state.password !== this.state.password2) {
       errArray.push(this.props.setAlert("Passwords do not match", "danger"));
     } else {
-      const headers = {
-        "Content-Type": "application/json",
-      };
       const registerValues = {
         user: {
           email: this.state.email,
@@ -29,7 +26,7 @@ export class Register extends Component {
         },
       };
 
-      this.props.register(registerValues, headers);
+      this.props.register(registerValues);
     }
   };
 
