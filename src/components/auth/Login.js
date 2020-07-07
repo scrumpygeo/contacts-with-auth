@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { Redirect, Link } from "react-router-dom";
 import { login } from "../../actions/auth";
+import PropTypes from "prop-types";
 
 export class Login extends Component {
   state = {
@@ -19,8 +21,8 @@ export class Login extends Component {
     };
 
     const body = { email: this.state.email, password: this.state.password };
-    console.log("Body:", body);
-    console.log("Headers", headers);
+    // console.log("Body:", body);
+    // console.log("Headers", headers);
     this.props.login(body, headers);
   };
 
@@ -31,6 +33,11 @@ export class Login extends Component {
   };
 
   render() {
+    // redirect if logged in
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <Fragment>
         <h1 className="large text-primary">Sign In</h1>
@@ -68,9 +75,21 @@ export class Login extends Component {
 
           <input type="submit" className="btn btn-primary" value="Login" />
         </form>
+        <p className="mt-2">
+          Don't have an account? <Link to="/register">Sign Up</Link>
+        </p>
       </Fragment>
     );
   }
 }
 
-export default connect(null, { login })(Login);
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { login })(Login);

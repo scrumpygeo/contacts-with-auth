@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
 import { register } from "../../actions/auth";
 import { setAlert } from "../../actions/alert";
 import PropTypes from "prop-types";
@@ -37,6 +38,11 @@ export class Register extends Component {
   };
 
   render() {
+    // redirect if authenticated
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/" />;
+    }
+
     return (
       <Fragment>
         <h1 className="large text-primary">Sign Up</h1>
@@ -81,8 +87,9 @@ export class Register extends Component {
           </div>
           <input type="submit" className="btn btn-primary" value="Register" />
         </form>
-        <p className="my-1">
-          Already have an account? <a href="login.html">Sign In</a>
+
+        <p className="mt-2">
+          Already have an account? <Link to="/login">Sign In</Link>
         </p>
       </Fragment>
     );
@@ -91,6 +98,11 @@ export class Register extends Component {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
-export default connect(null, { register, setAlert })(Register);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { register, setAlert })(Register);

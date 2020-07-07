@@ -5,9 +5,11 @@ import axios from "axios";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  LOGIN_USER,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
   USER_LOADED,
   AUTH_ERROR,
+  LOGOUT,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -41,7 +43,13 @@ export const register = (registerValues, headers) => async (dispatch) => {
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.data.user });
     history.push("/");
   } catch (err) {
-    dispatch(setAlert("There was an error", "danger"));
+    const errors = err.response;
+
+    if (errors.status === 422) {
+      dispatch(setAlert(`Email taken. Try another one`, "danger"));
+    } else {
+      dispatch(setAlert(errors.statusText, "danger"));
+    }
 
     dispatch({ type: REGISTER_FAIL });
   }
@@ -49,10 +57,32 @@ export const register = (registerValues, headers) => async (dispatch) => {
 
 // login
 export const login = (body, headers) => async (dispatch) => {
-  const response = await contacts.post("/sessions", body, headers);
-  // const status = response.status;
+  try {
+    const response = await contacts.post("/sessions", body, headers);
+    // const status = response.status;
+    console.log("Success:", response);
+    history.push("/");
 
-  // if status 401 return to login with error incorrect credentials
+    dispatch({ type: LOGIN_SUCCESS, payload: response.data.data.user });
+  } catch (err) {
+    const errors = err.response;
+    if (errors.status === 401) {
+      dispatch(
+        setAlert(`${errors.statusText}: incorrect email or password.`, "danger")
+      );
+    } else {
+      dispatch(setAlert(errors.statusText, "danger"));
+    }
 
-  dispatch({ type: LOGIN_USER, payload: response.data.data.user });
+    // console.log(err.response.statusText);
+    dispatch({ type: LOGIN_FAIL });
+  }
+};
+
+// Logout
+export const logout = () => (dispatch) => {
+  console.log("Logout called");
+  dispatch({
+    type: LOGOUT,
+  });
 };
