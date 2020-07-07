@@ -39,17 +39,17 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/contactlist" component={ContactList} />
-              <Route path="/contacts/new" exact component={ContactCreate} />
-              <Route path="/contacts/edit/:id" exact component={ContactEdit} />
+              <Route exact path="/contacts/new" component={ContactCreate} />
+              <Route exact path="/contacts/edit/:id" component={ContactEdit} />
               <Route
                 path="/contacts/delete/:id"
                 exact
                 component={ContactDelete}
               />
-              <Route path="/contacts/show/:id" exact component={ContactShow} />
-              <Route path="/register" exact component={Register} />
+              <Route exact path="/contacts/show/:id" component={ContactShow} />
+              <Route exact path="/register" component={Register} />
               <Route path="/login" exact component={Login} />
-              <PrivateRoute path="/dashboard" exact component={Dashboard} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>
           </div>
         </Router>

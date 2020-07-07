@@ -1,14 +1,15 @@
-import React, { Component } from "react";
-import { ContactList } from "../contacts/ContactList";
+import React from "react";
+import PropTypes from "prop-types";
+import ContactList from "../contacts/ContactList";
 
-export class Dashboard extends Component {
-  render() {
-    return (
-      <div>
-        <ContactList />
-      </div>
-    );
-  }
-}
+const Dashboard = (props) => {
+  return (
+    <div>
+      <ContactList />
+    </div>
+  );
+};
+
+Dashboard.propTypes = {};
 
 export default Dashboard;

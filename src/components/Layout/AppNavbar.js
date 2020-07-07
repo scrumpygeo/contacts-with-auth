@@ -14,11 +14,11 @@ const AppNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   );
 
   const guestLinks = (
-    <div className="navbar-nav ">
-      <Link to="/register" className="nav-item nav-link" href="#">
+    <div className="navbar-nav navbar">
+      <Link to="/register" className="nav-item nav-link text-primary" href="#">
         Register
       </Link>
-      <Link to="/login" className="nav-item nav-link" href="#">
+      <Link to="/login" className="nav-item nav-link text-primary" href="#">
         Login
       </Link>
     </div>

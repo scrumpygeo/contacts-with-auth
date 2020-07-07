@@ -41,7 +41,7 @@ export const register = (registerValues, headers) => async (dispatch) => {
 
     // console.log("response: ", response.data.data.user); // auth_token, email, id
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.data.user });
-    history.push("/");
+    history.push("/dashboard");
   } catch (err) {
     const errors = err.response;
 
@@ -59,11 +59,9 @@ export const register = (registerValues, headers) => async (dispatch) => {
 export const login = (body, headers) => async (dispatch) => {
   try {
     const response = await contacts.post("/sessions", body, headers);
-    // const status = response.status;
-    console.log("Success:", response);
-    history.push("/");
 
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.data.user });
+    history.push("/dashboard");
   } catch (err) {
     const errors = err.response;
     if (errors.status === 401) {
@@ -74,7 +72,6 @@ export const login = (body, headers) => async (dispatch) => {
       dispatch(setAlert(errors.statusText, "danger"));
     }
 
-    // console.log(err.response.statusText);
     dispatch({ type: LOGIN_FAIL });
   }
 };
