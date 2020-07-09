@@ -4,9 +4,10 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 
-const AppNavbar = ({ auth: { isAuthenticated, loading }, logout }) => {
+const AppNavbar = ({ auth: { isAuthenticated, loading, email }, logout }) => {
   const authLinks = (
     <div className="navbar-nav ">
+      <p className="mr-4">{email}</p>
       <a onClick={logout} href="#!">
         <i className="fas fa-sign-out-alt"></i> Logout
       </a>

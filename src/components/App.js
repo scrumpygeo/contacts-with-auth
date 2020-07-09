@@ -26,7 +26,9 @@ if (localStorage.authentication_token && localStorage.email) {
 
 class App extends Component {
   componentDidMount() {
-    this.props.loadUser();
+    if (localStorage.authentication_token && localStorage.email) {
+      this.props.loadUser();
+    }
   }
 
   render() {
@@ -38,15 +40,27 @@ class App extends Component {
             <Alert />
             <Switch>
               <Route exact path="/" component={Landing} />
-              <Route exact path="/contactlist" component={ContactList} />
-              <Route exact path="/contacts/new" component={ContactCreate} />
-              <Route exact path="/contacts/edit/:id" component={ContactEdit} />
-              <Route
+              <PrivateRoute exact path="/contactlist" component={ContactList} />
+              <PrivateRoute
+                exact
+                path="/contacts/new"
+                component={ContactCreate}
+              />
+              <PrivateRoute
+                exact
+                path="/contacts/edit/:id"
+                component={ContactEdit}
+              />
+              <PrivateRoute
                 path="/contacts/delete/:id"
                 exact
                 component={ContactDelete}
               />
-              <Route exact path="/contacts/show/:id" component={ContactShow} />
+              <PrivateRoute
+                exact
+                path="/contacts/show/:id"
+                component={ContactShow}
+              />
               <Route exact path="/register" component={Register} />
               <Route path="/login" exact component={Login} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />

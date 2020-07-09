@@ -10,20 +10,12 @@ export class Login extends Component {
     password: "",
   };
 
-  headers = {
-    "Content-Type": "application/json",
-  };
-
   onSubmit = (e) => {
     e.preventDefault();
-    const headers = {
-      "Content-Type": "application/json",
-    };
 
     const body = { email: this.state.email, password: this.state.password };
-    // console.log("Body:", body);
-    // console.log("Headers", headers);
-    this.props.login(body, headers);
+
+    this.props.login(body);
   };
 
   handleChange = (e) => {
@@ -35,7 +27,7 @@ export class Login extends Component {
   render() {
     // redirect if logged in
     if (this.props.isAuthenticated) {
-      return <Redirect to="/" />;
+      return <Redirect to="/dashboard" />;
     }
 
     return (

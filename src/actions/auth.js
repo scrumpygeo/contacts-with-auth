@@ -1,7 +1,8 @@
 import contacts from "../apis/contacts";
 import { setAlert } from "../actions/alert";
 import history from "../history";
-import axios from "axios";
+// import axios from "axios";
+import authorize from "../apis/authorize";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -10,6 +11,7 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
+  CLEAR_CONTACTS,
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -19,10 +21,11 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.authentication_token, localStorage.email);
   }
   try {
-    const res = await axios.get("http://localhost:5000/v1/sessions");
+    const res = await contacts.get("http://localhost:5000/v1/sessions");
+    console.log("User Loaded:", res.data);
     dispatch({
       type: USER_LOADED,
-      payload: res.data,
+      // payload: res.data,
     });
   } catch (err) {
     dispatch({
@@ -32,12 +35,12 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Register
-export const register = (registerValues, headers) => async (dispatch) => {
+export const register = (registerValues) => async (dispatch) => {
   try {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const response = await contacts.post("/users", registerValues, headers);
+    // const headers = {
+    //   "Content-Type": "application/json",
+    // };
+    const response = await authorize.post("/users", registerValues);
 
     // console.log("response: ", response.data.data.user); // auth_token, email, id
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.data.user });
@@ -56,12 +59,11 @@ export const register = (registerValues, headers) => async (dispatch) => {
 };
 
 // login
-export const login = (body, headers) => async (dispatch) => {
+export const login = (body) => async (dispatch) => {
   try {
-    const response = await contacts.post("/sessions", body, headers);
+    const response = await authorize.post("/sessions", body);
 
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.data.user });
-    history.push("/dashboard");
   } catch (err) {
     const errors = err.response;
     if (errors.status === 401) {
@@ -78,8 +80,6 @@ export const login = (body, headers) => async (dispatch) => {
 
 // Logout
 export const logout = () => (dispatch) => {
-  console.log("Logout called");
-  dispatch({
-    type: LOGOUT,
-  });
+  dispatch({ type: CLEAR_CONTACTS });
+  dispatch({ type: LOGOUT });
 };

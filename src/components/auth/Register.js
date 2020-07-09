@@ -40,7 +40,7 @@ export class Register extends Component {
   render() {
     // redirect if authenticated
     if (this.props.isAuthenticated) {
-      return <Redirect to="/" />;
+      return <Redirect to="/dashboard" />;
     }
 
     return (
