@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchContact } from '../../actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchContact } from "../../actions/contacts";
 
 class ContactShow extends Component {
   componentDidMount() {
@@ -14,12 +14,12 @@ class ContactShow extends Component {
     const { first_name, last_name, email } = this.props.contact;
 
     return (
-      <div className='jumbotron jumbotron-fluid mt-4'>
-        <div className='container'>
-          <h1 className='display-4  text-center pb-2 text-success'>
+      <div className="jumbotron jumbotron-fluid mt-4">
+        <div className="container">
+          <h1 className="display-4  text-center pb-2 text-success">
             {first_name} {last_name}
           </h1>
-          <p className='lead text-center mt-4 '>
+          <p className="lead text-center mt-4 ">
             <strong>{email}</strong>
           </p>
         </div>

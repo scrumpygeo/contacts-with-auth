@@ -32,44 +32,56 @@ export class Login extends Component {
 
     return (
       <Fragment>
-        <h1 className="large text-primary">Sign In</h1>
-        <p className="lead">
-          <i className="fas fa-user"></i> Log Into Your Account
-        </p>
-        <form
-          className="form"
-          action="create-profile.html"
-          onSubmit={this.onSubmit}
-        >
-          <div className="form-group">
-            <input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              className="form-control"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              minLength="6"
-              className="form-control"
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
-          </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-12 col-sm-4 offset-sm-4">
+              <div className="form-login"></div>
 
-          <input type="submit" className="btn btn-primary" value="Login" />
-        </form>
-        <p className="mt-2">
-          Don't have an account? <Link to="/register">Sign Up</Link>
-        </p>
+              <h1 className="large text-primary mt-3">Sign In</h1>
+              <p className="lead">
+                <i className="fas fa-user"></i> Log Into Your Account
+              </p>
+              <form
+                className="form"
+                action="create-profile.html"
+                onSubmit={this.onSubmit}
+              >
+                <div className="form-group">
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    name="email"
+                    className="form-control"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    minLength="6"
+                    className="form-control"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    required
+                  />
+                </div>
+
+                <input
+                  type="submit"
+                  className="btn btn-primary"
+                  value="Login"
+                />
+              </form>
+              <p className="mt-2">
+                Don't have an account? <Link to="/register">Sign Up</Link>
+              </p>
+            </div>
+          </div>
+        </div>
       </Fragment>
     );
   }

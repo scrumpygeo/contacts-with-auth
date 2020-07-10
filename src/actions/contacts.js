@@ -61,15 +61,39 @@ export const fetchContact = (id) => async (dispatch) => {
 };
 
 export const editContact = (id, formValues) => async (dispatch) => {
-  const response = await contacts.patch(`/contacts/${id}`, formValues);
-
-  dispatch({ type: EDIT_CONTACT, payload: response.data.data });
-  history.push("/");
+  if (localStorage.authentication_token && localStorage.email) {
+    // setAuthToken(localStorage.authentication_token, localStorage.email);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "X-User-Token": localStorage.authentication_token,
+        "X-User-Email": localStorage.email,
+      },
+    };
+    const response = await contacts.patch(
+      `/contacts/${id}`,
+      formValues,
+      config
+    );
+    console.log(response.data);
+    dispatch({ type: EDIT_CONTACT, payload: response.data });
+    history.push("/");
+  }
 };
 
 export const deleteContact = (id) => async (dispatch) => {
-  await contacts.delete(`/contacts/${id}`);
+  if (localStorage.authentication_token && localStorage.email) {
+    // setAuthToken(localStorage.authentication_token, localStorage.email);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "X-User-Token": localStorage.authentication_token,
+        "X-User-Email": localStorage.email,
+      },
+    };
+    await contacts.delete(`/contacts/${id}`, config);
 
-  dispatch({ type: DELETE_CONTACT, payload: id });
-  history.push("/");
+    dispatch({ type: DELETE_CONTACT, payload: id });
+    history.push("/");
+  }
 };

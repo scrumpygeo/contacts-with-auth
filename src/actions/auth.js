@@ -21,11 +21,10 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.authentication_token, localStorage.email);
   }
   try {
-    const res = await contacts.get("http://localhost:5000/v1/sessions");
-    console.log("User Loaded:", res.data);
+    await contacts.get("http://localhost:5000/v1/sessions");
+
     dispatch({
       type: USER_LOADED,
-      // payload: res.data,
     });
   } catch (err) {
     dispatch({
@@ -37,12 +36,8 @@ export const loadUser = () => async (dispatch) => {
 // Register
 export const register = (registerValues) => async (dispatch) => {
   try {
-    // const headers = {
-    //   "Content-Type": "application/json",
-    // };
     const response = await authorize.post("/users", registerValues);
 
-    // console.log("response: ", response.data.data.user); // auth_token, email, id
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.data.user });
     history.push("/dashboard");
   } catch (err) {

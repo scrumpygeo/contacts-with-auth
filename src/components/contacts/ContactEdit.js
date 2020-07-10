@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchContact, editContact } from '../../actions';
-import ContactForm from './ContactForm';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { fetchContact, editContact } from "../../actions/contacts";
+import ContactForm from "./ContactForm";
 
 class ContactEdit extends Component {
   componentDidMount() {
@@ -18,7 +18,7 @@ class ContactEdit extends Component {
     }
     return (
       <div>
-        <h3 className='text-center mt-2'>Edit a Contact</h3>
+        <h3 className="text-center mt-2">Edit a Contact</h3>
         <ContactForm
           initialValues={{
             first_name: this.props.contact.first_name,

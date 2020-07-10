@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchContacts } from "../../actions";
+import { fetchContacts } from "../../actions/contacts";
 
 export class ContactList extends Component {
   componentDidMount() {
@@ -25,6 +25,13 @@ export class ContactList extends Component {
   };
 
   renderList() {
+    if (Object.keys(this.props.contacts).length === 0) {
+      return (
+        <div className="mx-auto">
+          <h2 className="text-warning">You nave no contacts yet.</h2>
+        </div>
+      );
+    }
     return this.props.contacts.map((contact) => {
       return (
         // return jsx

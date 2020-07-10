@@ -33,39 +33,37 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container-fluid">
         <Router history={history}>
-          <div>
-            <AppNavbar />
-            <Alert />
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <PrivateRoute exact path="/contactlist" component={ContactList} />
-              <PrivateRoute
-                exact
-                path="/contacts/new"
-                component={ContactCreate}
-              />
-              <PrivateRoute
-                exact
-                path="/contacts/edit/:id"
-                component={ContactEdit}
-              />
-              <PrivateRoute
-                path="/contacts/delete/:id"
-                exact
-                component={ContactDelete}
-              />
-              <PrivateRoute
-                exact
-                path="/contacts/show/:id"
-                component={ContactShow}
-              />
-              <Route exact path="/register" component={Register} />
-              <Route path="/login" exact component={Login} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            </Switch>
-          </div>
+          <AppNavbar />
+          <Alert />
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <PrivateRoute exact path="/contactlist" component={ContactList} />
+            <PrivateRoute
+              exact
+              path="/contacts/new"
+              component={ContactCreate}
+            />
+            <PrivateRoute
+              exact
+              path="/contacts/edit/:id"
+              component={ContactEdit}
+            />
+            <PrivateRoute
+              path="/contacts/delete/:id"
+              exact
+              component={ContactDelete}
+            />
+            <PrivateRoute
+              exact
+              path="/contacts/show/:id"
+              component={ContactShow}
+            />
+            <Route exact path="/register" component={Register} />
+            <Route path="/login" exact component={Login} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          </Switch>
         </Router>
       </div>
     );

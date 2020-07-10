@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { createContact } from '../../actions';
-import ContactForm from './ContactForm';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { createContact } from "../../actions/contacts";
+import ContactForm from "./ContactForm";
 
 class ContactCreate extends Component {
   onSubmit = (formValues) => {
@@ -10,7 +10,7 @@ class ContactCreate extends Component {
   render() {
     return (
       <div>
-        <h3 className='text-center mt-2'>Create a Contact</h3>
+        <h3 className="text-center mt-2">Create a Contact</h3>
         <ContactForm onSubmit={this.onSubmit} />
       </div>
     );

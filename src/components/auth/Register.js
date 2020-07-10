@@ -45,52 +45,64 @@ export class Register extends Component {
 
     return (
       <Fragment>
-        <h1 className="large text-primary">Sign Up</h1>
-        <p className="lead">
-          <i className="fas fa-user"></i> Create Your Account
-        </p>
-        <form className="form" onSubmit={(e) => this.onSubmit(e)}>
-          <div className="form-group">
-            <input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              className="form-control"
-              value={this.state.email}
-              onChange={(e) => this.handleChange(e)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              minLength="6"
-              className="form-control"
-              value={this.state.password}
-              onChange={(e) => this.handleChange(e)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              name="password2"
-              minLength="6"
-              className="form-control"
-              value={this.state.password2}
-              onChange={(e) => this.handleChange(e)}
-              required
-            />
-          </div>
-          <input type="submit" className="btn btn-primary" value="Register" />
-        </form>
+        <div className="container">
+          <div className="row">
+            <div className="col-xs-12 col-sm-4 offset-sm-4">
+              <div className="form-login"></div>
 
-        <p className="mt-2">
-          Already have an account? <Link to="/login">Sign In</Link>
-        </p>
+              <h1 className="large text-primary mt-3">Sign Up</h1>
+              <p className="lead">
+                <i className="fas fa-user"></i> Create Your Account
+              </p>
+              <form className="form" onSubmit={(e) => this.onSubmit(e)}>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    placeholder="Email Address"
+                    name="email"
+                    className="form-control"
+                    value={this.state.email}
+                    onChange={(e) => this.handleChange(e)}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    minLength="6"
+                    className="form-control"
+                    value={this.state.password}
+                    onChange={(e) => this.handleChange(e)}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="password"
+                    placeholder="Confirm Password"
+                    name="password2"
+                    minLength="6"
+                    className="form-control"
+                    value={this.state.password2}
+                    onChange={(e) => this.handleChange(e)}
+                    required
+                  />
+                </div>
+                <input
+                  type="submit"
+                  className="btn btn-primary"
+                  value="Register"
+                />
+              </form>
+
+              <p className="mt-2">
+                Already have an account? <Link to="/login">Sign In</Link>
+              </p>
+            </div>
+          </div>
+        </div>
       </Fragment>
     );
   }
