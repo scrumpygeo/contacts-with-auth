@@ -2,7 +2,6 @@ import contacts from "../apis/contacts";
 import { setAlert } from "../actions/alert";
 import history from "../history";
 // import axios from "axios";
-import authorize from "../apis/authorize";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -13,19 +12,25 @@ import {
   LOGOUT,
   CLEAR_CONTACTS,
 } from "./types";
-import setAuthToken from "../utils/setAuthToken";
 
 // Load User - to check if logged in
 export const loadUser = () => async (dispatch) => {
-  if (localStorage.authentication_token && localStorage.email) {
-    setAuthToken(localStorage.authentication_token, localStorage.email);
-  }
   try {
-    await contacts.get("http://localhost:5000/v1/sessions");
+    if (localStorage.authentication_token && localStorage.email) {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          "X-User-Token": localStorage.authentication_token,
+          "X-User-Email": localStorage.email,
+        },
+      };
 
-    dispatch({
-      type: USER_LOADED,
-    });
+      await contacts.get("http://localhost:5000/v1/sessions", config);
+
+      dispatch({
+        type: USER_LOADED,
+      });
+    }
   } catch (err) {
     dispatch({
       type: AUTH_ERROR,
@@ -36,7 +41,7 @@ export const loadUser = () => async (dispatch) => {
 // Register
 export const register = (registerValues) => async (dispatch) => {
   try {
-    const response = await authorize.post("/users", registerValues);
+    const response = await contacts.post("/users", registerValues);
 
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.data.user });
     history.push("/dashboard");
@@ -56,7 +61,7 @@ export const register = (registerValues) => async (dispatch) => {
 // login
 export const login = (body) => async (dispatch) => {
   try {
-    const response = await authorize.post("/sessions", body);
+    const response = await contacts.post("/sessions", body);
 
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.data.user });
   } catch (err) {
