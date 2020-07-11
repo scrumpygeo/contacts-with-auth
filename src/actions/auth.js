@@ -70,7 +70,7 @@ export const login = (body) => async (dispatch) => {
     const response = await contacts.post("/sessions", body, config);
 
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.data.user });
-    history.push("/dashboard");
+    history.push("/contactlist");
   } catch (err) {
     const errors = err.response;
     if (errors) {

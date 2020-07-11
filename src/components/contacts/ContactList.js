@@ -5,6 +5,7 @@ import { fetchContacts } from "../../actions/contacts";
 
 export class ContactList extends Component {
   componentDidMount() {
+    console.log("loading:", this.props.auth.loading);
     this.props.fetchContacts();
   }
 
@@ -77,8 +78,8 @@ export class ContactList extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return { contacts: Object.values(state.contacts) };
-};
+const mapStateToProps = (state) => ({
+  contacts: Object.values(state.contacts),
+});
 
 export default connect(mapStateToProps, { fetchContacts })(ContactList);
