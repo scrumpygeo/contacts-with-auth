@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Router, Route, Switch } from "react-router-dom";
+import axios from "axios";
 import Landing from "../components/Layout/Landing";
 import ContactCreate from "../components/contacts/ContactCreate";
 import ContactList from "../components/contacts/ContactList";
@@ -13,7 +14,6 @@ import AppNavbar from "../components/Layout/AppNavbar";
 import Alert from "../components/Layout/Alert";
 import history from "../history";
 import { loadUser } from "../actions/auth";
-import setAuthToken from "../utils/setAuthToken";
 import { setAlert } from "../actions/alert";
 import PrivateRoute from "../components/routing/PrivateRoute";
 import Dashboard from "../components/dashboard/Dashboard";
@@ -21,7 +21,12 @@ import Dashboard from "../components/dashboard/Dashboard";
 import "./app.css";
 
 if (localStorage.authentication_token && localStorage.email) {
-  setAuthToken(localStorage.authentication_token, localStorage.email);
+  axios.defaults.headers.common["X-User-Token"] =
+    localStorage.authentication_token;
+  axios.defaults.headers.common["X-User-Email"] = localStorage.email;
+} else {
+  delete axios.defaults.headers.common["X-User-Token"];
+  delete axios.defaults.headers.common["X-User-email"];
 }
 
 class App extends Component {
@@ -70,4 +75,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { loadUser, setAlert, setAuthToken })(App);
+export default connect(null, { loadUser, setAlert })(App);

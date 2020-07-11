@@ -36,15 +36,6 @@ export const createContact = (formValues) => async (dispatch) => {
 export const fetchContacts = () => async (dispatch) => {
   try {
     if (localStorage.authentication_token && localStorage.email) {
-      // setAuthToken(localStorage.authentication_token, localStorage.email);
-      // const config = {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "X-User-Token": localStorage.authentication_token,
-      //     "X-User-Email": localStorage.email,
-      //   },
-      // };
-
       const config = setHeaders();
 
       const response = await contacts.get("/contacts", config);

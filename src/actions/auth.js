@@ -25,7 +25,7 @@ export const loadUser = () => async (dispatch) => {
         },
       };
 
-      await contacts.get("http://localhost:5000/v1/sessions", config);
+      await contacts.get("/sessions", config);
 
       dispatch({
         type: USER_LOADED,
@@ -39,9 +39,9 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // Register
-export const register = (registerValues) => async (dispatch) => {
+export const register = (body) => async (dispatch) => {
   try {
-    const response = await contacts.post("/users", registerValues);
+    const response = await contacts.post("/users", body);
 
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.data.user });
     history.push("/dashboard");
@@ -61,16 +61,18 @@ export const register = (registerValues) => async (dispatch) => {
 // login
 export const login = (body) => async (dispatch) => {
   try {
-    const response = await contacts.post("/sessions", body);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await contacts.post("/sessions", body, config);
 
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.data.user });
   } catch (err) {
     const errors = err.response;
-    if (errors.status === 401) {
-      dispatch(
-        setAlert(`${errors.statusText}: incorrect email or password.`, "danger")
-      );
-    } else {
+    if (errors) {
       dispatch(setAlert(errors.statusText, "danger"));
     }
 
