@@ -44,7 +44,7 @@ export const register = (body) => async (dispatch) => {
     const response = await contacts.post("/users", body);
 
     dispatch({ type: REGISTER_SUCCESS, payload: response.data.data.user });
-    history.push("/contactlist");
+    history.push("/dashboard");
   } catch (err) {
     const errors = err.response;
 
@@ -70,7 +70,7 @@ export const login = (body) => async (dispatch) => {
     const response = await contacts.post("/sessions", body, config);
 
     dispatch({ type: LOGIN_SUCCESS, payload: response.data.data.user });
-    history.push("/contactlist");
+    history.push("/dashboard");
   } catch (err) {
     const errors = err.response;
     if (errors) {
