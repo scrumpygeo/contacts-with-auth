@@ -85,4 +85,5 @@ export const login = (body) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   dispatch({ type: CLEAR_CONTACTS });
   dispatch({ type: LOGOUT });
+  history.push("/");
 };

@@ -13,7 +13,7 @@ const AppNavbar = ({ auth: { isAuthenticated, loading, email }, logout }) => {
         <p className="mr-4">{email}</p>
       </li>
       <li className="nav-item active">
-        <a onClick={logout} href="#!">
+        <a onClick={logout} href="/">
           <i className="fas fa-sign-out-alt"></i> Logout
         </a>
       </li>
