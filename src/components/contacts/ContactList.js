@@ -5,7 +5,6 @@ import { fetchContacts } from "../../actions/contacts";
 
 export class ContactList extends Component {
   componentDidMount() {
-    console.log("loading:", this.props.auth.loading);
     this.props.fetchContacts();
   }
 
