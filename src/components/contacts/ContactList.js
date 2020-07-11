@@ -25,13 +25,13 @@ export class ContactList extends Component {
   };
 
   renderList() {
-    if (Object.keys(this.props.contacts).length === 0) {
-      return (
-        <div className="mx-auto">
-          <h2>You nave no contacts yet.</h2>
-        </div>
-      );
-    }
+    // if (Object.keys(this.props.contacts).length === 0) {
+    //   return (
+    //     <div className="mx-auto">
+    //       <h2>You nave no contacts yet.</h2>
+    //     </div>
+    //   );
+    // }
     return this.props.contacts.map((contact) => {
       return (
         // return jsx
@@ -68,8 +68,8 @@ export class ContactList extends Component {
     return (
       <Fragment>
         <div className="my-2">
-          <h2 className="d-inline">Contacts</h2>{" "}
-          <span className="float-right "> {this.renderCreateBtn()}</span>
+          <h2 className="d-inline ml-4">Contacts</h2>{" "}
+          <span className="float-right mr-4 "> {this.renderCreateBtn()}</span>
         </div>
         <div className="row">{this.renderList()}</div>
       </Fragment>
